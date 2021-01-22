@@ -6,6 +6,7 @@ import "mocha";
 
 import { plot } from "./index";
 import { expect as should } from "chai";
+import { fail } from "assert";
 
 function handleResult(
   error: any,
@@ -55,6 +56,22 @@ describe("Plot tests", function () {
   // });
 
   describe("PNG output", function () {
+    it("bad filename ", async () => {
+      let passed = false;
+      try {
+        const ploted = await plot({
+          data: [3, 1, 2, 3, 4],
+          filename: __dirname + "/test/output1.png & frog > frog.txt",
+          format: "png",
+        });
+      } catch (e) {
+        should(e.message).contain("invalid filename of");
+        passed = true;
+      }
+      if (!passed) {
+        fail();
+      }
+    });
     it("Async Output1", async () => {
       const ploted = await plot({
         data: [3, 1, 2, 3, 4],

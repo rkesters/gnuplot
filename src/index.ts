@@ -354,11 +354,17 @@ function plotCallack(options: PlotOptions) {
   gnuplot.stdin.end();
 }
 
+import validFilename from "filenamify";
+
 /**
  * Plots data to a PDF file. If it does not exist, the PDF file will
  * be created, otherwise this plot will be appended as a new page.
  */
 export function plot(options: PlotOptions): Promise<boolean> | void {
+  const f = validFilename.path(options.filename);
+  if (f !== options.filename) {
+    throw new Error(`invalid filename of '${options.filename}' -- ${f}`);
+  }
   if (options.finish) {
     return plotCallack(options);
   }
