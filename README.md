@@ -3,12 +3,11 @@
 [![npm](https://img.shields.io/npm/dt/@stoqey/gnuplot.svg)](http://www.npmtrends.com/@stoqey/gnuplot)
 ![TypeScript compatible](https://img.shields.io/badge/typescript-compatible-brightgreen.svg)
 
-**@stoqey/gnuplot** is an easy to use node  module to draw charts using [gnuplot](http://www.gnuplot.info/) and [ps2pdf](http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.50/Ps2pdf.htm). This module is based on Richard Meadows's [node-plotter](https://github.com/richardeoin/nodejs-plotter)
+**@stoqey/gnuplot** is an easy to use node module to draw charts using [gnuplot](http://www.gnuplot.info/) and [ps2pdf](http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.50/Ps2pdf.htm). This module is based on Richard Meadows's [node-plotter](https://github.com/richardeoin/nodejs-plotter)
 
-## Installation ##
+## Installation
 
 Prerequisites:
-
 
 ```bash
 # ubuntu
@@ -25,31 +24,29 @@ brew install gnuplot
 To install package, just run:
 
 ```
-npm install @stoqey/gnuplot
+npm install @rkesters/gnuplot
 ```
 
-## Usage ##
+## Usage
 
 ```javascript
-import plot from '@stoqey/gnuplot'
+import plot from "@stoqey/gnuplot";
 
 // with callback
 plot({
-	data:		[ 3, 1, 2, 3, 4 ],
-	filename:	'output.png',
-	finish: (error) => {
-
-	}
+  data: [3, 1, 2, 3, 4],
+  filename: "output.png",
+  finish: (error) => {},
 });
 
 // As promise
 const plotted = await plot({
-	data: [3, 1, 2, 3, 4],
-	filename: 'output1.png',
+  data: [3, 1, 2, 3, 4],
+  filename: "output1.png",
 });
 ```
 
-### Output format ###
+### Output format
 
 This defaults to `.png` but specifing `format: svg` changes the output
 to [.svg](http://www.w3.org/Graphics/SVG/) and `format: pdf` changes
@@ -57,18 +54,19 @@ the output format to
 [.pdf](http://en.wikipedia.org/wiki/Portable_Document_Format).
 
 ```javascript
-import plot from '@stoqey/gnuplot'
+import plot from "@stoqey/gnuplot";
 
 plot({
-	data:		[ 3, 1, 2, 3, 4 ],
-	filename:	'output.svg',
-	format:		'svg'
+  data: [3, 1, 2, 3, 4],
+  filename: "output.svg",
+  format: "svg",
 });
 ```
 
-### Formatting ###
+### Formatting
 
 The following properties can be used:
+
 - `title` : _Sets the title of the graph_
 - `xlabel` : _Sets the label on the x axis of the graph_
 - `ylabel` : _Sets the label on the y axis of the graph_
@@ -93,65 +91,64 @@ The following example shows these in use:
 
 ```javascript
 plot({
-	title:		'example',
-	data:		{ 't1' : { 1357162672: 22.2, 1357162782: 23, 1357162892: 24 } },
-	time:		'hours',
-	style:		'line',
-	filename:	'test/output14.png',
-	format:		'png',
-	decimalsign: ',',
-	yFormat: '%.2f USD',
-	hideSeriesTitle: true,
-	xlabel:		'Time',
-	ylabel:		'Price',
-	margin: 	{
-		left: 10,
-		right: 3,
-		top: 3,
-		bottom: 4
-	},
-	xRotate: {
-		value: 45,
-		yOffset: -1.5,
-		xOffset: -2
-	},
-	hideSeriesTitle: true,
-	xRange: {
-		min: 0,
-		max: 100
-	}
+  title: "example",
+  data: { t1: { 1357162672: 22.2, 1357162782: 23, 1357162892: 24 } },
+  time: "hours",
+  style: "line",
+  filename: "test/output14.png",
+  format: "png",
+  decimalsign: ",",
+  yFormat: "%.2f USD",
+  hideSeriesTitle: true,
+  xlabel: "Time",
+  ylabel: "Price",
+  margin: {
+    left: 10,
+    right: 3,
+    top: 3,
+    bottom: 4,
+  },
+  xRotate: {
+    value: 45,
+    yOffset: -1.5,
+    xOffset: -2,
+  },
+  hideSeriesTitle: true,
+  xRange: {
+    min: 0,
+    max: 100,
+  },
 });
 ```
 
-### Specifing X and Y values ###
+### Specifing X and Y values
 
 ```javascript
 plot({
-	data:		{ 'line' : { 1: 5, 5: 6 } },
-	filename:	'output.png'
+  data: { line: { 1: 5, 5: 6 } },
+  filename: "output.png",
 });
 ```
 
 Instead of specifing an array for `data`, you can specify an object
 with a named series inside.
 
-### Multiple Series ###
+### Multiple Series
 
 ```javascript
 plot({
-	data:		{ 'tick' : [ 3, 1, 2, 3, 4 ], 'line' : { 1: 5, 5: 6 } },
-	filename:	'output.png'
+  data: { tick: [3, 1, 2, 3, 4], line: { 1: 5, 5: 6 } },
+  filename: "output.png",
 });
 ```
 
-### Time Formatting ###
+### Time Formatting
 
 ```javascript
 plot({
-	data:		{ 'temperature' :
-			{ 1357162672: 22, 1357162782: 23, 1357162892: 24 } },
-	time:		'hours',
-	filename:	'output.png'
+  data: { temperature: { 1357162672: 22, 1357162782: 23, 1357162892: 24 } },
+  time: "hours",
+  filename: "output.png",
 });
 ```
 
@@ -159,11 +156,11 @@ The x axis can be formatted as a time series if the x values are given
 as a [unix time](http://en.wikipedia.org/wiki/Unix_time). The `time`
 property can be specified with the [gnuplot time format](http://gnuplot.sourceforge.net/docs_4.2/node274.html).
 
-### Other options ###
+### Other options
 
 The options object might additionally contain the following:
 
-Option | Description | Example
--------|-------------|---------
-`exec`   | Arguments for the gnuplot process | `options.exec = { cwd : '/home/user/images' };`
-`finish` | Callback executed when the gnuplot process finishes | `options.finish = function(){ Console.log('Success!'); };`
+| Option   | Description                                         | Example                                                    |
+| -------- | --------------------------------------------------- | ---------------------------------------------------------- |
+| `exec`   | Arguments for the gnuplot process                   | `options.exec = { cwd : '/home/user/images' };`            |
+| `finish` | Callback executed when the gnuplot process finishes | `options.finish = function(){ Console.log('Success!'); };` |
