@@ -1,9 +1,9 @@
 # **gnuplot** for node
 
-[![npm](https://img.shields.io/npm/dt/@stoqey/gnuplot.svg)](http://www.npmtrends.com/@stoqey/gnuplot)
+[![npm](https://img.shields.io/npm/dt/@rkesters/gnuplot.svg)](http://www.npmtrends.com/@rkesters/gnuplot)
 ![TypeScript compatible](https://img.shields.io/badge/typescript-compatible-brightgreen.svg)
 
-**@stoqey/gnuplot** is an easy to use node module to draw charts using [gnuplot](http://www.gnuplot.info/) and [ps2pdf](http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.50/Ps2pdf.htm). This module is based on Richard Meadows's [node-plotter](https://github.com/richardeoin/nodejs-plotter)
+**@rkesters/gnuplot** is an easy to use node module to draw charts using [gnuplot](http://www.gnuplot.info/) and [ps2pdf](http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.50/Ps2pdf.htm). This module is based on Richard Meadows's [node-plotter](https://github.com/richardeoin/nodejs-plotter)
 
 ## Installation
 
@@ -30,7 +30,7 @@ npm install @rkesters/gnuplot
 ## Usage
 
 ```javascript
-import plot from "@stoqey/gnuplot";
+import plot from "@srkesters/gnuplot";
 
 // with callback
 plot({
@@ -54,7 +54,7 @@ the output format to
 [.pdf](http://en.wikipedia.org/wiki/Portable_Document_Format).
 
 ```javascript
-import plot from "@stoqey/gnuplot";
+import plot from "@rkesters/gnuplot";
 
 plot({
   data: [3, 1, 2, 3, 4],
