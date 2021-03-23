@@ -365,6 +365,7 @@ export function plot(options: PlotOptions): Promise<boolean> | void {
   if (f !== options.filename) {
     throw new Error(`invalid filename of '${options.filename}' -- ${f}`);
   }
+  console.log(`${f} -- ${options.filename}`);
   if (options.finish) {
     return plotCallack(options);
   }

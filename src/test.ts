@@ -5,8 +5,9 @@
 import "mocha";
 
 import { plot } from "./index";
-import { expect as should } from "chai";
+import { expect, expect as should } from "chai";
 import { fail } from "assert";
+import fs from "fs";
 
 function handleResult(
   error: any,
@@ -394,6 +395,25 @@ describe("Plot tests", function () {
           handleResult(error, stdout, stderr, done);
         },
       });
+    });
+
+    it.only("Bad filename", async () => {
+      try {
+        await plot({
+          data: [1, 2, 3],
+          filename: `${__dirname}/test/output.png"}"&echo vulnerable > poc""`,
+          format: "svg",
+        });
+      } catch (e) {
+        if (fs.existsSync(`${__dirname}/test/output.png`)) {
+          fail();
+          return;
+        }
+
+        return;
+      }
+
+      fail();
     });
   });
 });
